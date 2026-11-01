@@ -1,0 +1,107 @@
+/* 体験ノート デザインシステム — Tailwind CSS v4 のtheme。
+   Tailwindを使う側は `@import "tailwindcss";` の後にこのファイルを読み込む。 */
+
+@theme {
+  /* 承認済み「体験ノート」デザインのpalette。画面ごとに色を増やさない。
+     このファイルが色・寸法の正本で、tokens.json は同じ値を持つ。 */
+  --color-paper: #f7f9fc;
+  --color-mist: #eef2f6;
+  --color-ink-900: #10233d;
+  --color-tide-500: #1d6e6a;
+  --color-sun-500: #f59e0b;
+  --color-coral-500: #f97316;
+
+  /* 既存UIが利用するsemantic token。paletteを役割へ割り当てる。 */
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f2f5f9;
+  --color-text: #10233d;
+  --color-text-muted: #526074;
+  --color-border: #c9d0d6;
+  --color-primary: #1d6e6a;
+  --color-primary-strong: #145653;
+  --color-success: #25613f;
+  --color-warning: #7a4f10;
+  --color-danger: #9d2f24;
+  --color-focus: #1d6e6a;
+  --color-accent: #a64a27;
+
+  --font-sans:
+    Inter, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo,
+    sans-serif;
+  --font-serif: Georgia, "Yu Mincho", "Hiragino Mincho ProN", serif;
+
+  --text-record-title: 1rem;
+  --text-record-title--line-height: 1.6;
+
+  --radius-note-sm: 0.75rem;
+  --radius-note: 1rem;
+  --radius-note-lg: 1.25rem;
+  --shadow-note: 0 4px 16px #10233d0a;
+  --shadow-note-soft: 0 2px 8px #10233d08;
+
+  /* #374 UI-TW-002: control高さの正本。共通Componentはこの3段だけを使い、
+     画面側で高さを再定義しない。 */
+  --spacing-control-compact: 2.5rem; /* 40px: 行内の補助操作 */
+  --spacing-control-standard: 2.75rem; /* 44px: 通常のButton / Input / Navigation */
+  --spacing-control-large: 3rem; /* 48px: Primary CTA */
+  --spacing-record-row: 3.5rem; /* 56px: 一覧Rowの最小高さ */
+
+  /* #374 UI-TW-002: 本文幅の正本。画面ごとにmax-widthを発明しない。 */
+  --container-form: 35rem; /* 560px: 単一列Form */
+  --container-article: 45rem; /* 720px: 読み物 */
+  --container-page: 56.25rem; /* 900px: Workspace / Publicのmain */
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-width: 320px;
+    background: var(--color-background);
+    color-scheme: light;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-synthesis: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  /* 遷移後の読み上げ先。操作対象のfocus-visibleは上の規則で残す。 */
+  main[tabindex="-1"]:focus,
+  main h1[tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      /* Accessibility例外: motionを確実に抑止するためだけに!importantを許可する。 */
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

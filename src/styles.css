@@ -1,0 +1,5 @@
+/* Tailwindを使わない利用者向けに dist/styles.css を作る入力。
+   部品が使うutilityだけを含め、Tailwindのreset（preflight）も含む。 */
+@import "tailwindcss" source(none);
+@import "./theme.css";
+@source "./components";

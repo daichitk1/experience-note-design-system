@@ -1,0 +1,6 @@
+allowBuilds:
+  esbuild: true
+  "@parcel/watcher": false
+
+# 公開直後のバージョンを取り込まない（idea-to-done と同じ方針）。
+minimumReleaseAge: 1440
