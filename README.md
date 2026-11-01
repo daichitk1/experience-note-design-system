@@ -20,8 +20,17 @@
 
 ## 使い方
 
+npmには公開していません。GitHubから、タグを指定してインストールします。
+
 ```bash
-pnpm add experience-note-design-system
+pnpm add github:daichitk1/experience-note-design-system#v0.1.0
+```
+
+インストール時に `prepare` で `dist/` を組み立てます。pnpm 10 以降は依存のbuild scriptを既定で止めるため、利用側の `pnpm-workspace.yaml` で許可します。
+
+```yaml
+allowBuilds:
+  experience-note-design-system: true
 ```
 
 ### Tailwind CSS v4 で使う
@@ -98,6 +107,8 @@ pnpm check
 ```
 
 `pnpm check` は型検査・テスト・buildを順に実行します。
+
+新しい版を出すときは `package.json` の `version` を上げ、同じ番号のタグ（例: `v0.2.0`）を付けてpushします。
 
 - 色・寸法の正本は `src/theme.css` です。値を変えたら `tokens.json` も同じ値に直します。`tests/tokens.test.ts` がずれを検出します。
 - 文字色の組み合わせは `tests/design-tokens.test.ts` がWCAG AA（4.5:1）を満たすか確認します。

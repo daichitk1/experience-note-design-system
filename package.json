@@ -39,7 +39,8 @@
     "build:css": "tailwindcss -i src/styles.css -o dist/styles.css --minify",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "check": "pnpm typecheck && pnpm test && pnpm build"
+    "check": "pnpm typecheck && pnpm test && pnpm build",
+    "prepare": "pnpm build"
   },
   "peerDependencies": {
     "react": "^19.0.0",
